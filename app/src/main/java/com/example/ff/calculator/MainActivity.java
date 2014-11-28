@@ -12,9 +12,6 @@ import android.os.Vibrator;
 
 /**
  * 计算器
- *
- * @author wangwang
- *
  */
 public class MainActivity extends Activity implements OnClickListener{
 

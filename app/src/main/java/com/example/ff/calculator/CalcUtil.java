@@ -3,20 +3,12 @@ package com.example.ff.calculator;
 /**
  * Created by FF on 2014/11/28.
  */
-import android.app.ActionBar;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.lang.Math;
 
-/**
- * 计算表达式工具类
- * 前缀、中缀、后缀表达式 详解地址
- * http://blog.csdn.net/antineutrino/article/details/6763722
- * @author wangwang
- */
+
 
 public class CalcUtil {
 
@@ -33,11 +25,7 @@ public class CalcUtil {
 
 
 
-    /**
-     * 计算前缀表达式结果
-     * @param expression
-     * @return
-     */
+
     private static double calcResult(Stack<Object> expression){
 
         Object[] objs = new Object[expression.size()];
@@ -84,13 +72,7 @@ public class CalcUtil {
     }
 
 
-    /**
-     * 前缀表达式（前缀记法、波兰式）
-     * 前缀表达式的运算符位于操作数之前
-     *
-     * @param str
-     * @return
-     */
+
     private static String dealstr(String str){
         str=str.replace("sin","s");
         str=str.replace("cos","c");
