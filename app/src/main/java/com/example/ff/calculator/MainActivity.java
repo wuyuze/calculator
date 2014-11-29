@@ -24,6 +24,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
     // 显示
     private EditText show = null;
+    private EditText odshow = null;
 
     // 计算器键盘
     private Integer[] btns = new Integer[]{
@@ -44,6 +45,7 @@ public class MainActivity extends Activity implements OnClickListener{
         setContentView(R.layout.activity_main);
 
         show = (EditText) findViewById(R.id.rs_show);
+        odshow = (EditText)findViewById(R.id.re_show);
 
         strBuf = new StringBuffer();
 
@@ -86,11 +88,10 @@ public class MainActivity extends Activity implements OnClickListener{
                 strBuf = new StringBuffer(content);
                 break;
             case R.id.calc:
-
                 content = calculate(strBuf.toString());
-
                 strBuf = new StringBuffer(content);
-
+                odshow.setText(content);
+                odshow.setSelection(content.length());
                 break;
             default:
 

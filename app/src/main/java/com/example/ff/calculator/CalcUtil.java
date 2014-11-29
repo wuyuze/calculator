@@ -22,13 +22,13 @@ public class CalcUtil {
 
 
     public static String calculate(String str){
-
-        double rs = calcResult(toPolishNotation(str));
+        String nstr = dealstr(str);
+        double rs = calcResult(toPolishNotation(nstr));
 
         // 整数去除小数点
-        str = rs == (int)rs? String.valueOf((int)rs): String.valueOf(rs);
+        nstr = rs == (int)rs? String.valueOf((int)rs): String.valueOf(rs);
 
-        return str;
+        return nstr;
     }
 
 
@@ -91,6 +91,12 @@ public class CalcUtil {
      * @param str
      * @return
      */
+    private static String dealstr(String str){
+        str=str.replace("sin","s");
+        str=str.replace("cos","c");
+        str=str.replace("tan","t");
+        return str;
+    }
     private static Stack<Object> toPolishNotation(String str){
 
         Stack<Character> s1 = new Stack<Character>();
@@ -189,46 +195,26 @@ public class CalcUtil {
         for(int i = list.size() - 1, j = 0; i >= 0; i--, j++){
 
             numArr[j] = list.get(i) ;
-            if (numArr[j]=='s'){
-                j-=2;
-                numArr[j]='s';
-                break;
-            }
-            if (numArr[j]=='c'){
-                j-=2;
-                numArr[j]='c';
-                break;
-            }
-            if (numArr[j]=='t'){
-                j-=2;
-                numArr[j]='t';
-                break;
-            }
             if (numArr[j]=='e'){
-                numArr[j]='2';
-                numArr[j+1]='.';
-                numArr[j+2]='7';
-                numArr[j+3]='1';
-                j+=4;
+                num = Math.E;
+                break;
             }
             else if (numArr[j]=='π'){
-                numArr[j]='3';
-                numArr[j+1]='.';
-                numArr[j+2]='1';
-                numArr[j+3]='4';
-                j+=3;
+                num = Math.PI;
+                break;
             }
-
 
         }
 
         list.clear();
 
         String str = new String(numArr);
+        if (num==0){
+            num = Double.parseDouble(str);
+        }
 
-        num = Double.parseDouble(str);
 
-        return num;
+         return num;
     }
 
     /**

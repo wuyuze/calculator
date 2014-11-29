@@ -3,6 +3,26 @@
     android:layout_height="match_parent"
     android:layout_margin="0dp"
     android:orientation="vertical" >
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00a6ac"
+        android:orientation="horizontal" >
+        <EditText
+            android:id="@+id/re_show"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:lines="1"
+            android:textSize="90px"
+            android:gravity="center_vertical|right"
+            android:textColor="#ffffff"
+            android:background="#111111"
+            />
+
+
+
+    </LinearLayout>
 
     <LinearLayout
 
@@ -10,15 +30,17 @@
         android:layout_height="wrap_content"
         android:background="#00a6ac"
         android:orientation="horizontal" >
-
         <EditText
             android:id="@+id/rs_show"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="50dp"
+            android:textSize="50px"
             android:lines="3"
             android:gravity="center_vertical|right"
-            android:background="@android:drawable/editbox_background_normal"
+            android:textColor="#ffffff"
+            android:background="#000000"
             />
+
 
 
     </LinearLayout>
@@ -320,6 +342,7 @@
 
             <Button
                 android:id="@+id/calc"
+                android:layout_marginTop="1dp"
                 android:layout_marginLeft="1dp"
                 android:background="@drawable/button"
                 android:layout_width="match_parent"
