@@ -17,6 +17,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
 
     private StringBuffer strBuf = null;
+    private StringBuffer old;
     private Vibrator vibrator;
 
     // 显示
@@ -25,6 +26,8 @@ public class MainActivity extends Activity implements OnClickListener{
 
     // 计算器键盘
     private Integer[] btns = new Integer[]{
+            R.id.MC,R.id.MR,R.id.MS,R.id.Madd,R.id.Mdelete,
+            R.id.log,R.id.ln,R.id.daoshu,R.id.jiecheng,R.id.xiangfanshu,
             R.id.clear, R.id.back,R.id.yu,R.id.square,R.id.pingf,
             R.id.sin,R.id.cos,R.id.tan,R.id.e,R.id.pi,
             R.id.seven, R.id.eight, R.id.nine, R.id.divide, R.id.left,
@@ -84,11 +87,53 @@ public class MainActivity extends Activity implements OnClickListener{
 
                 strBuf = new StringBuffer(content);
                 break;
+            case R.id.xiangfanshu:{
+                if (strBuf.toString().toCharArray()[0]=='-'){
+                    strBuf.delete(0,1);
+                }else {
+                    strBuf.insert(0,'-');
+                }
+                content = strBuf.toString();
+                strBuf = new StringBuffer(content);
+                break;
+            }
+            case R.id.daoshu: {
+                double i = Double.valueOf(strBuf.toString());
+                double m = 1 / i;
+                content = Double.toString(m);
+                strBuf = new StringBuffer(content);
+                break;
+            }
             case R.id.calc:
                 content = calculate(strBuf.toString());
                 strBuf = new StringBuffer(content);
                 odshow.setText(content);
                 odshow.setSelection(content.length());
+                break;
+            case R.id.Madd:
+                content = strBuf.toString();
+                old =new StringBuffer(content);
+                strBuf =new StringBuffer(content);
+                break;
+            case R.id.Mdelete:
+                old = new StringBuffer("");
+                content = strBuf.toString();
+                strBuf = new StringBuffer(content);
+                break;
+            case R.id.MS:
+                content = strBuf.toString();
+                old =new StringBuffer(content);
+                strBuf =new StringBuffer(content);
+                break;
+            case R.id.MC:
+                old = new StringBuffer("");
+                content = strBuf.toString();
+                strBuf = new StringBuffer(content);
+                break;
+            case R.id.MR:
+                content = old.toString();
+                strBuf = new StringBuffer(content);
+                old = new StringBuffer(content);
                 break;
             default:
 

@@ -52,7 +52,7 @@ public class CalcUtil {
 
                 char op = (Character) obj;
                 double rs ;
-                if (op=='c'||op=='s'||op=='t'){
+                if (op=='c'||op=='s'||op=='t'||op=='g'||op=='n'||op=='!'){
                     double d1 = nums.pop();
                     rs = angle(d1,op);
                 }
@@ -77,6 +77,28 @@ public class CalcUtil {
         str=str.replace("sin","s");
         str=str.replace("cos","c");
         str=str.replace("tan","t");
+        str=str.replace("log","g");
+        str=str.replace("ln","n");
+        for (int i=0;i<str.length();i++){
+            if (str.toCharArray()[i]=='-'){
+                if (str.toCharArray()[i-1]!='1'&&str.toCharArray()[i-1]!='2'&&str.toCharArray()[i-1]!='3'&&
+                str.toCharArray()[i-1]!='4'&&str.toCharArray()[i-1]!='5'&&str.toCharArray()[i-1]!='6'&&str.toCharArray()[i-1]!='7'
+                        &&str.toCharArray()[i-1]!='8'&&str.toCharArray()[i-1]!='9'&&str.toCharArray()[i-1]!='0'){
+                    str.toString();
+                    StringBuffer content = new StringBuffer(str);
+                    content.insert(i,'0');
+                    str =content.toString();
+                    i+=1;
+                }
+                if (i==0){
+                    str.toString();
+                    StringBuffer content = new StringBuffer(str);
+                    content.insert(i,'0');
+                    str =content.toString();
+                    i+=1;
+                }
+            }
+        }
         return str;
     }
     private static Stack<Object> toPolishNotation(String str){
@@ -268,8 +290,21 @@ public class CalcUtil {
 
         return 1;
     }
+    private static int jiecheng(double  n){
+        int m =1;
+        for (;n>0;n--){
+           m*=n;
+        }
+        return m;
+    }
     private static double angle(double num,char op){
         switch (op){
+            case '!':
+                return jiecheng(num);
+            case 'g':
+                return Math.log10(num);
+            case 'n':
+                return Math.log(num);
             case 's':
                 return Math.sin(num*Math.PI/180);
             case 'c':
@@ -287,6 +322,6 @@ public class CalcUtil {
      * @return
      */
     private static boolean isOperator(char c) {
-        return (c=='+' || c=='-' || c=='x' || c=='÷'|| c=='^'||c== '√'||c=='%'||c== 's' || c == 'c'||c=='t' );
+        return (c=='+' || c=='-' || c=='x' || c=='÷'|| c=='^'||c== '√'||c=='%'||c== 's' || c == 'c'||c=='t'||c=='g'||c=='n'||c=='!' );
     }
 }
